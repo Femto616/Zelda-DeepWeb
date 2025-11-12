@@ -1,0 +1,133 @@
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    /* Remove a centralização e deixa eu ter mais controle com a bomba do wrapper */
+    min-height: 100vh; 
+    background-color: #e0f2f7; 
+}
+
+/* Novo Wrapper para centralizar o conteudo que n é o background */
+.main-content-wrapper {
+    width: 100%;
+    min-height: 100vh; 
+    
+    /*  CENTRALIZAÇÃO HORIZONTAL */
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    
+    /* ALINHAMENTO VERTICAL */
+    justify-content: flex-start;
+
+    position: relative; 
+    z-index: 10; 
+}
+
+/*  animação da logo               */
+
+.logo-container {
+    /* muda a forma do posicionamento  */
+    position: absolute; 
+    left: 50%; /* Começa no meio horizontal */
+    top: 15vh; /* Posiciona no meio superior */
+    
+    /* ajuste para deixar centralizado no meio */
+    transform: translateX(-50%); 
+    
+    width: 700px;
+    max-width: 80%;
+    text-align: center;
+    padding: 0;
+}
+
+.logo-animada {
+    width: 900px;
+    max-width: 100%;
+    display: block; /* block para ter um melhor controle */
+    
+    position: relative; /* deixa ter mais liberdade no posicionamento */
+    
+    /* Animação */
+    animation-name: flutuar;
+    animation-duration: 3s; 
+    animation-iteration-count: infinite; 
+    animation-direction: alternate; 
+    animation-timing-function: ease-in-out; 
+}
+
+/* Definição da Animação Keyframe da Logo */
+@keyframes flutuar {
+    0% {
+        transform: translateY(0); 
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* 3. FUNDO ANIMADO (troca de frames no js)    */
+
+#backgroundAnimado {
+    
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Manda o fundo para o fundo kkkk */
+    
+    /* Configurações para a imagem de fundo */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-image: url('assets/img-frame1.png'); 
+}
+
+/* --- Estilos para o Pop-up de Som --- */
+.popup-overlay {
+    position: fixed; /* Fixa o pop-up na tela */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Fundo escuro semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Garante que fique acima de tudo */
+}
+
+.popup-content {
+    background-color: #222; /* Fundo escuro para combinar com o tema */
+    color: #fff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid #555;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.4); /* Sombra verde (Zelda-style) */
+}
+
+#btnAtivarSom {
+    background-color: #4CAF50; /* Verde vibrante */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 1.1em;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+#btnAtivarSom:hover {
+    background-color: #45a049;
+}
+
+/* Oculta o pop-up quando a classe 'hidden' for adicionada */
+.hidden {
+    display: none !important;
+}
