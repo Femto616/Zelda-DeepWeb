@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zelda Animado - Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <audio id="musicaFundo" src="{{ url_for('static', filename='assets/zelda_s_lullaby.mp3') }}" loop></audio> 
+
+    <div id="popupAtivarSom" class="popup-overlay">
+        <div class="popup-content">
+            <h2>Bem-vindo(a)!</h2>
+            <p>Para a melhor experiência, ative a música de fundo.</p>
+            <button id="btnAtivarSom">Ativar Som</button>
+        </div>
+    </div>
+    
+    <div id="backgroundAnimado"></div> 
+    
+    <div class="main-content-wrapper">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Logo" class="logo-animada">
+            <h1></h1>
+        </div>
+        
+        <div class="start-button-container">
+            <img src="{{ url_for('static', filename='assets/start_button_pixel.png') }}" alt="Start Game" id="startButtonImg">
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
