@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zelda: A Aventura</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='JogoStyles.css') }}">
+</head>
+<body>
+    
+    <div id="game-container">
+        <h2>Joguin</h2>
+        <p>.</p>
+        
+        <canvas id="gameCanvas" width="512" height="288"></canvas>
+    </div>
+    
+    <script src="{{ url_for('static', filename='JogoScript.js') }}"></script>
+</body>
+</html>

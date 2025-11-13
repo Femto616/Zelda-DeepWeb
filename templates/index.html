@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <audio id="musicaFundo" src="{{ url_for('static', filename='assets/zelda_s_lullaby.mp3') }}" loop></audio> 
+    <audio id="musicaFundo" src="{{ url_for('static', filename='sounds/Zelda_s_Lullaby.mp3') }}" loop></audio> 
 
     <div id="popupAtivarSom" class="popup-overlay">
         <div class="popup-content">
@@ -22,12 +22,12 @@
     
     <div class="main-content-wrapper">
         <div class="logo-container">
-            <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Logo" class="logo-animada">
+            <img src="{{ url_for('static', filename='hud/logo.png') }}" alt="Logo" class="logo-animada">
             <h1></h1>
         </div>
         
         <div class="start-button-container">
-            <img src="{{ url_for('static', filename='assets/start_button_pixel.png') }}" alt="Start Game" id="startButtonImg">
+            <img src="{{ url_for('static', filename='hud/botao-logo.png') }}" alt="Start Game" id="startButtonImg">
         </div>
     </div>
 

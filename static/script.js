@@ -1,32 +1,35 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Referências dos elementos DOM
+    
+    // ----------------------------------------------------
+    // 1. DEFINIÇÃO DE VARIÁVEIS E REFERÊNCIAS (Escopo Global do DOMContentLoaded)
+    // ----------------------------------------------------
+    
     const musica = document.getElementById('musicaFundo');
     const popup = document.getElementById('popupAtivarSom');
     const btnAtivarSom = document.getElementById('btnAtivarSom');
     const backgroundElement = document.getElementById('backgroundAnimado');
-
+    
+    // REFERÊNCIA CRÍTICA DO BOTÃO START (Seu ID no HTML é startButtonImg)
+    const startButton = document.getElementById('startButtonImg'); 
+    
     // ----------------------------------------------------
-    // 1. LÓGICA DE ATIVAÇÃO DE MÚSICA (Pop-up)
+    // 2. LÓGICA DE ATIVAÇÃO DE MÚSICA (Pop-up)
     // ----------------------------------------------------
     
-    // Garante que o pop-up esteja visível ao carregar
     if (popup) {
         popup.classList.remove('hidden'); 
     }
 
     if (btnAtivarSom && musica) {
         btnAtivarSom.addEventListener('click', function() {
-            // Tenta reproduzir a música
             musica.play()
                 .then(() => {
-                    // Esconde o pop-up
                     if (popup) {
                         popup.classList.add('hidden');
                     }
                 })
                 .catch(error => {
-                    // Garante que o pop-up suma mesmo se houver falha de reprodução
-                    console.error("Erro ao tentar tocar a música. O navegador pode estar bloqueando:", error);
+                    console.error("Erro ao tocar a música:", error);
                     if (popup) {
                         popup.classList.add('hidden');
                     }
@@ -35,34 +38,63 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ----------------------------------------------------
-    // 2. LÓGICA DE ANIMAÇÃO DE BACKGROUND (Frames)
+    // 3. LÓGICA DE ANIMAÇÃO DE BACKGROUND (Frames)
     // ----------------------------------------------------
-
-    // Caminhos Corrigidos: Relativos a static/ e nomes de img-frameX.png
+    
     const frames = [
-        'static/assets/img-frame1.png', 
-        'static/assets/img-frame2.png',
-        'static/assets/img-frame3.png',
-        'static/assets/img-frame4.png',
-        'static/assets/img-frame5.png',
-        'static/assets/img-frame6.png',
-        'static/assets/img-frame7.png',
-        'static/assets/img-frame8.png',
-        'static/assets/img-frame9.png',
-        'static/assets/img-frame10.png'
+        // Caminhos atualizados para a pasta hud
+        '/static/hud/img-frame1.png', 
+        '/static/hud/img-frame2.png',
+        '/static/hud/img-frame3.png',
+        '/static/hud/img-frame4.png',
+        '/static/hud/img-frame5.png',
+        '/static/hud/img-frame6.png',
+        '/static/hud/img-frame7.png',
+        '/static/hud/img-frame8.png',
+        '/static/hud/img-frame9.png',
+        '/static/hud/img-frame10.png'
     ];
 
     let currentFrameIndex = 0;
-    const frameSpeed = 120; // 120ms para uma animação suave
+    const frameSpeed = 120;
 
     function updateFrame() {
-        backgroundElement.style.backgroundImage = `url('${frames[currentFrameIndex]}')`;
-        currentFrameIndex++;
-        
-        if (currentFrameIndex >= frames.length) {
-            currentFrameIndex = 0;
+        if (backgroundElement) {
+            backgroundElement.style.backgroundImage = `url('${frames[currentFrameIndex]}')`;
+            currentFrameIndex++;
+            
+            if (currentFrameIndex >= frames.length) {
+                currentFrameIndex = 0;
+            }
+        }
+    }
+    
+    // Inicia a animação se o elemento de fundo for encontrado
+    if (backgroundElement) {
+        setInterval(updateFrame, frameSpeed);
+    }
+    
+    // ----------------------------------------------------
+    // 4. LÓGICA DE REDIRECIONAMENTO PARA O JOGO (Solução do Erro de Escopo)
+    // ----------------------------------------------------
+
+    // Função que configura o botão, recebendo o elemento como parâmetro
+    function setupStartButton(btnElement) {
+        if (btnElement) {
+            btnElement.style.cursor = 'pointer'; 
+
+            btnElement.addEventListener('click', function() {
+                console.log("Botão Start Clicado! Redirecionando para /jogo..."); 
+                
+                // Redireciona para a rota /jogo
+                window.location.href = '/jogo'; 
+            });
+        } else {
+            console.error("ERRO CRÍTICO: Elemento startButtonImg não foi encontrado no DOM (ID incorreto).");
         }
     }
 
-    setInterval(updateFrame, frameSpeed);
+    // Chamada da função, passando a variável 'startButton'
+    setupStartButton(startButton); 
+
 });

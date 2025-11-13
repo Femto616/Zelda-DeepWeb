@@ -1,0 +1,26 @@
+/* static/game_styles.css */
+
+/* Regras básicas para o corpo da página de jogo */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000; /* Fundo preto para o jogo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Regras do Canvas de Jogo */
+#gameCanvas {
+    /* 1. Dimensionamento (Exemplo 3x: 512x3 = 1536) */
+    width: 1536px;
+    height: 864px;
+
+    /* 2. A REGRA CRUCIAL: Impede o anti-aliasing em navegadores modernos */
+    image-rendering: pixelated; 
+    
+    /* 3. Outras regras visuais */
+    border: 4px solid #fff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
